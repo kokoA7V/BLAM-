@@ -33,25 +33,4 @@ public class GovernmentAttackA : EnemyAttack
     {
         Debug.Log("attackUpdate");
     }
-    protected override void AddDamage()
-    {
-        if (dodged)
-        {
-            enemyHealth.nowHitPoint -= hitPointDamage;
-            SeManager.Instance.Play("damage6");
-        }
-        else if (guarded)
-        {
-            enemyHealth.nowHitPoint -= hitPointDamage;
-            SeManager.Instance.Play("damage6");
-        }
-        else
-        {
-            playerHealth.nowHitPoint -= hitPointDamage;
-            SeManager.Instance.Play("damage7");
-        }
-
-        dodged = false;
-        guarded = false;
-    }
 }

@@ -27,6 +27,24 @@ public abstract class EnemyAttack
     public abstract void AttackEnd();
     public abstract void AttackUpdate();
 
+    public void CannotDodge()
+    {
+        if (Input.GetKeyDown(KeyCode.D) && !dodged)
+        {
+            dodged = true;
+            Debug.Log("dodge‚ğ¸”s‚µ‚½‚æI");
+
+        }
+    }
+    public void CannotGuard()
+    {
+        if (Input.GetKeyDown(KeyCode.G) && !guarded)
+        {
+            guarded = true;
+            Debug.Log("guard‚ğ¸”s‚µ‚½‚æI");
+        }
+
+    }
     public void CanDodge()
     {
         Debug.Log("dodge‚Å‚«‚é‚æI");
@@ -49,20 +67,29 @@ public abstract class EnemyAttack
 
     protected virtual void AddDamage()
     {
-        if (dodged)
+        if (dodgeSuccess)
         {
             enemyHealth.nowHitPoint -= hitPointDamage;
+            SeManager.Instance.Play("damage6");
+
+            dodgeSuccess = false;
+
         }
-        else if (guarded)
+        else if (guardSuccess)
         {
             enemyHealth.nowHitPoint -= hitPointDamage;
+            SeManager.Instance.Play("damage6");
+
+            guardSuccess = false;
         }
         else
         {
             playerHealth.nowHitPoint -= hitPointDamage;
-        }
+            SeManager.Instance.Play("damage7");
 
+        }
         dodged = false;
         guarded = false;
+
     }
 }

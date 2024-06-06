@@ -43,10 +43,18 @@ public abstract class EnemyPattern
                 {
                     item.CanDodge();
                 }
+                else
+                {
+                    item.CannotDodge();
+                }
 
                 if (patternTimer >= guardStartTime)
                 {
                     item.CanGuard();
+                }
+                else
+                {
+                    item.CannotGuard();
                 }
 
                 // ‰¹o‚·‚â‚Â
