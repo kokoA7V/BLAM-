@@ -57,7 +57,7 @@ public abstract class EnemyPattern
                     item.CannotGuard();
                 }
 
-                // ‰¹o‚·‚â‚Â
+                // 
                 if (patternTimer == dodgeStartTime)
                 {
                     SeManager.Instance.Play("–òä°1");
