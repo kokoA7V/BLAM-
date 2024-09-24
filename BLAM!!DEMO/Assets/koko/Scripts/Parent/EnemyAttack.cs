@@ -12,10 +12,14 @@ public abstract class EnemyAttack
     public int attackActiveTime;
 
     public int dodgeTime;
+    public int dodgeJustTime;
     public int guardTime;
+    public int guardJustTime;
 
     protected bool dodgeSuccess;
+    protected bool dodgeJustSuccess;
     protected bool guardSuccess;
+    protected bool guardJustSuccess;
 
     protected bool dodged;
     protected bool guarded;
@@ -55,6 +59,17 @@ public abstract class EnemyAttack
         }
     }
 
+    public void CanJustDodge()
+    {
+        Debug.Log("justdodgeできるよ！");
+        if (Input.GetKeyDown(KeyCode.D) && !dodged)
+        {
+            dodgeJustSuccess = true;
+            Debug.Log("justdodgeしたよ！");
+        }
+
+    }
+
     public void CanGuard()
     {
         Debug.Log("guardできるよ！");
@@ -63,6 +78,17 @@ public abstract class EnemyAttack
             guardSuccess = true;
             Debug.Log("guardしたよ！");
         }
+    }
+
+    public void CanJustGuard()
+    {
+        Debug.Log("justguardできるよ！");
+        if (Input.GetKeyDown(KeyCode.G) && !guarded)
+        {
+            guardJustSuccess = true;
+            Debug.Log("justguardしたよ！");
+        }
+
     }
 
     protected virtual void AddDamage()
@@ -75,12 +101,28 @@ public abstract class EnemyAttack
             dodgeSuccess = false;
 
         }
+        else if (dodgeJustSuccess)
+        {
+            enemyHealth.nowHitPoint -= hitPointDamage * 2;
+            SeManager.Instance.Play("damage6");
+
+            dodgeJustSuccess = false;
+
+        }
         else if (guardSuccess)
         {
             enemyHealth.nowHitPoint -= hitPointDamage;
             SeManager.Instance.Play("damage6");
 
             guardSuccess = false;
+        }
+        else if (guardJustSuccess)
+        {
+            enemyHealth.nowHitPoint -= hitPointDamage * 2;
+            SeManager.Instance.Play("damage6");
+
+            guardSuccess = false;
+
         }
         else
         {
