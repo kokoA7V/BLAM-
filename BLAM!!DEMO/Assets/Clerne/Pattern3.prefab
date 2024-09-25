@@ -49,13 +49,11 @@ MonoBehaviour:
   spAtk: 100
   atkAtt: 0
   startTiming: 0
-  patternTime: 12
-  attackTiming: 10
+  patternTime: 8
+  attackTiming: 7
   guardTime: 3
   justGuardTime: 1
   dodgeTime: 3
   justDodgeTime: 1
   time: 0
-  debugHpText: {fileID: 0}
-  debugDodgeText: {fileID: 0}
   playerMaxHp: 1000
