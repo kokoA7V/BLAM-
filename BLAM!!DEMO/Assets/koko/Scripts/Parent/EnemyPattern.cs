@@ -33,24 +33,35 @@ public abstract class EnemyPattern
             }
 
             int dodgeStartTime = item.attackStartTime + item.attackActiveTime - item.dodgeTime;
+            int dodgeJustStartTime = item.attackStartTime + item.attackActiveTime - item.dodgeJustTime;
             int guardStartTime = item.attackStartTime + item.attackActiveTime - item.guardTime;
+            int guardJustStartTime = item.attackStartTime + item.attackActiveTime - item.guardJustTime;
 
             if (patternTimer >= item.attackStartTime && patternTimer <= item.attackActiveTime + item.attackStartTime - 1)
             {
                 item.AttackUpdate();
 
-                if (patternTimer >= dodgeStartTime)
+
+                if (patternTimer >= dodgeStartTime && !(patternTimer >= dodgeJustStartTime))
                 {
                     item.CanDodge();
+                }
+                else if (patternTimer >= dodgeJustStartTime)
+                {
+                    item.CanJustDodge();
                 }
                 else
                 {
                     item.CannotDodge();
                 }
 
-                if (patternTimer >= guardStartTime)
+                if (patternTimer >= guardStartTime && !(patternTimer >= guardJustStartTime))
                 {
                     item.CanGuard();
+                }
+                else if (patternTimer >= guardJustStartTime)
+                {
+                    item.CanJustGuard();
                 }
                 else
                 {

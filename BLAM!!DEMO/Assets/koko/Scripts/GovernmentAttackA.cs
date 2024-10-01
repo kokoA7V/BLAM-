@@ -9,10 +9,12 @@ public class GovernmentAttackA : EnemyAttack
         hitPointDamage = 10;
 
         attackStartTime = 100;
-        attackActiveTime = 200;
+        attackActiveTime = 300;
 
-        dodgeTime = 100;
-        guardTime = 100;
+        dodgeTime = 200;
+        dodgeJustTime = 50;
+        guardTime = 200;
+        guardJustTime = 50;
     }
 
     public override void AttackStart()
