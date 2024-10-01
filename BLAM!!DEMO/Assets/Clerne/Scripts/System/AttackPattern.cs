@@ -124,8 +124,6 @@ public class AttackPattern : MonoBehaviour
 
         PatternController();
 
-
-
         if (dodgeAndGuardFailed)
         {
             player.Hp -= hpAtk;
@@ -154,6 +152,14 @@ public class AttackPattern : MonoBehaviour
             }
 
             CounterController();
+
+
+            if(enemy.PatternChange == true)
+            {
+                patternEnd = true;
+
+                enemy.PatternChange = false;
+            }
 
         }
         else if(time >= patternTime)
@@ -371,6 +377,7 @@ public class AttackPattern : MonoBehaviour
         // デバッグ用
         attStr = "チャンスタイム中!";
     }
+
     float TimingNum(float n)
     {
         float timing = attackTiming - n;

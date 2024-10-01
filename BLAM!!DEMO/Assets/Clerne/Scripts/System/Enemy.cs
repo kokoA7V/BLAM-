@@ -6,26 +6,40 @@ public class Enemy : MonoBehaviour
 {
     [Header("ステータス")]
     [SerializeField]
-    int maxHp;
+    float maxHp;
 
     [SerializeField]
     bool debugMode;
 
     [SerializeField]
-    GameObject[] pattern;   // 攻撃パターン
+    GameObject[] firstPattern;  // 第一形態攻撃パターン
 
+    [SerializeField]
+    GameObject[] secondPattern; // 第二形態攻撃パターン
+    
+    private float _hp;
 
-    private int _hp;
+    private GameObject[] nowPattern;
 
-    public int Hp
+    private bool patternChange;
+
+    public float Hp
     {
         get { return _hp; }
 
         set { _hp = value; }
     }
 
+    public bool PatternChange
+    {
+        get { return patternChange; }
+
+        set { patternChange = value; }
+    }
+
     private AttackPattern attackPattern;
     private int patternNum = 0; // 現在動いているパターン
+    private bool isSecondPattern = false;
 
     private GameObject nowObj;
     private GameObject beforeObj;
@@ -35,7 +49,9 @@ public class Enemy : MonoBehaviour
     {
         _hp = maxHp;
 
-        Instantiate(pattern[patternNum],transform);    // 子にパターンのプレハブを生成
+        nowPattern = firstPattern;
+
+        Instantiate(nowPattern[patternNum],transform);    // 子にパターンのプレハブを生成
 
         nowObj = gameObject.transform.GetChild(0).gameObject;   // 子のオブジェクトを取得
 
@@ -47,19 +63,37 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if(attackPattern.PatternEnd == true)
+        // HPが半分を切ったら
+        if (_hp / maxHp < 0.5f && isSecondPattern == false)
+        {
+            nowPattern = secondPattern;
+
+            patternChange = true;
+
+            isSecondPattern = true;
+
+        }
+
+
+        if (attackPattern.PatternEnd == true)
         { // パターンが終わったら
+
+
+
+
             beforeObj = nowObj; // 終わったパターンオブジェクトを過去のオブジェクトとする
 
             patternNum++;   // パターン番号を進める
 
 
             // 登録されたパターンを1から順番に繰り返す
-            if (pattern.Length <= patternNum)
+            if (nowPattern.Length <= patternNum || patternChange == true)
             {
                 patternNum = 0;
+
+                patternChange = false;
             }
-            Instantiate(pattern[patternNum],transform); // 次のパターンを生成
+            Instantiate(nowPattern[patternNum],transform); // 次のパターンを生成
 
 
             nowObj = gameObject.transform.GetChild(1).gameObject; // 次のパターンを取得
@@ -70,6 +104,7 @@ public class Enemy : MonoBehaviour
 
             Destroy(beforeObj);                                   // 前のパターンを破棄
         }
+
 
     }
 
