@@ -686,6 +686,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 972378117}
+  - component: {fileID: 972378118}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -708,6 +709,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &972378118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972378116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee757f7a3ddee945a475e07c416f252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 1000
+  dodgeInput:
+    m_Name: Dodge Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2c4913b2-4a17-4f64-9676-8a667452045d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 5396ad78-e084-408a-b5f8-932888369c77
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Dodge Input
+      m_Flags: 0
+    m_Flags: 0
+  guardInput:
+    m_Name: Guard Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e1323721-bc87-482a-ae0d-4184df02f026
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 68964869-8710-4d02-97b2-7e290d0e8544
+      m_Path: <Keyboard>/g
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Guard Input
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &1133501530
 GameObject:
   m_ObjectHideFlags: 0

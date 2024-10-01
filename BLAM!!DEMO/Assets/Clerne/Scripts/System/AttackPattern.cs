@@ -7,11 +7,11 @@ public class AttackPattern : MonoBehaviour
 {
     [Header("ステータス")]
 
-    [SerializeField]
-    int maxHp;
-    [SerializeField]
+    [SerializeField, Tooltip("最大体力")]
+    int maxHp; 
+    [SerializeField, Tooltip("対体力攻撃力")]
     int hpAtk;
-    [SerializeField]
+    [SerializeField, Tooltip("対スタミナ攻撃力")]
     int spAtk;
     [SerializeField, Tooltip("攻撃属性 0で軽攻撃、1で重攻撃")]
     bool atkAtt;
@@ -26,14 +26,16 @@ public class AttackPattern : MonoBehaviour
     float attackTiming;
     [SerializeField, Tooltip("ガード可能時間（攻撃ヒットタイミングからの時間）")]
     float guardTime;
-    [SerializeField]
+    [SerializeField, Tooltip("ジャストガード可能時間（攻撃ヒットタイミングからの時間）")]
     float justGuardTime;
-    [SerializeField]
+    [SerializeField, Tooltip("回避可能時間（攻撃ヒットタイミングからの時間）")]
     float dodgeTime;
-    [SerializeField]
+    [SerializeField,Tooltip("ジャスト回避可能時間（攻撃ヒットタイミングからの時間）")]
     float justDodgeTime;
 
-    private bool patternEnd = false;
+    private bool patternEnd = false; // パターン終了フラグ
+
+    Player player;
 
     public bool PatternEnd
     {
@@ -44,16 +46,16 @@ public class AttackPattern : MonoBehaviour
         
     }
 
-    private int hp;
+    private int hp; //
 
-    private bool dodged = false;
-    private bool dodgeSuccesed = false;
-    private bool guarded = false;
-    private bool guardSuccesed = false;
-    private bool dodgeAndGuardFailed = false;
+    private bool dodged = false;                // 回避行動フラグ
+    private bool dodgeSuccesed = false;         // 回避成功フラグ
+    private bool guarded = false;               // ガード行動フラグ
+    private bool guardSuccesed = false;         // ガード成功フラグ
+    private bool dodgeAndGuardFailed = false;   // 対処行動失敗フラグ
 
     [SerializeField ,ReadOnly]
-    private float time;
+    private float time;     // パターン内の経過時間
 
 
     [Header("デバッグ用")]
@@ -62,10 +64,6 @@ public class AttackPattern : MonoBehaviour
     Text debugDodgeText;
     Text debugGuardText;
     Text debugDoText;
-    [SerializeField]
-    int playerMaxHp;
-
-    private int playerHp;
 
     private string dodgeTimingStr;
 
@@ -79,7 +77,8 @@ public class AttackPattern : MonoBehaviour
 
         hp = maxHp;
 
-        playerHp = playerMaxHp;
+
+        player = GameObject.Find("Player").GetComponent<Player>();
 
         debugDodgeText = GameObject.Find("DebugText/Dodge").GetComponent<Text>();
 
@@ -102,7 +101,7 @@ public class AttackPattern : MonoBehaviour
 
         if (dodgeAndGuardFailed)
         {
-            playerHp -= 100;
+            player.Hp -= 100;
             dodgeAndGuardFailed = false;
         }
     }
@@ -127,7 +126,7 @@ public class AttackPattern : MonoBehaviour
 
     void DebugText()
     {
-        debugHpText.text = "エネミーHP:" + hp + " プレイヤーHP:" + playerHp;
+        debugHpText.text = "エネミーHP:" + hp + " プレイヤーHP:" + player.Hp;
 
         debugDodgeText.text = "経過時間 " + time.ToString("F2") + " " + dodgeTimingStr;
 
@@ -150,7 +149,7 @@ public class AttackPattern : MonoBehaviour
                     dodgeTimingStr = "ジャスト回避可能"; // デバッグ用
 
 
-                    if (Input.GetKeyDown(KeyCode.D)) // プレイヤー側のInputにそのうち変える
+                    if (player.DodgeInp)
                     {
                         Debug.Log("ジャスト回避成功");
                         doStr = "ジャスト回避成功"; // デバッグ用
@@ -164,7 +163,7 @@ public class AttackPattern : MonoBehaviour
                 else
                 {   // 通常回避可能時間
                     dodgeTimingStr = "通常回避可能"; // デバッグ用
-                    if (Input.GetKeyDown(KeyCode.D)) // プレイヤー側のInputにそのうち変える
+                    if (player.DodgeInp) 
                     {
                         Debug.Log("通常回避成功");
                         doStr = "通常回避成功"; // デバッグ用
@@ -179,7 +178,7 @@ public class AttackPattern : MonoBehaviour
             else if (time < TimingNum(dodgeTime))
             {   // 回避受付時間より早い
                 dodgeTimingStr = "回避できない"; // デバッグ用
-                if (Input.GetKeyDown(KeyCode.D)) // プレイヤー側のInputにそのうち変える
+                if (player.DodgeInp) 
                 {
                     Debug.Log("回避ボタンを押すのが早すぎ");
                     Debug.Log("回避失敗");
@@ -218,7 +217,7 @@ public class AttackPattern : MonoBehaviour
                     guardTimingStr = "ジャストガード可能"; // デバッグ用
 
 
-                    if (Input.GetKeyDown(KeyCode.G)) // プレイヤー側のInputにそのうち変える
+                    if (player.GuardInp) 
                     {
                         Debug.Log("ジャストガード成功");
                         doStr = "ジャストガード成功";
@@ -231,7 +230,7 @@ public class AttackPattern : MonoBehaviour
                 else
                 {   // ガード可能時間
                     guardTimingStr = "通常ガード可能"; // デバッグ用
-                    if (Input.GetKeyDown(KeyCode.G)) // プレイヤー側のInputにそのうち変える
+                    if (player.GuardInp) 
                     {
                         Debug.Log("通常ガード成功");
                         doStr = "通常ガード成功";
@@ -246,7 +245,7 @@ public class AttackPattern : MonoBehaviour
             else if (time < TimingNum(guardTime))
             {   // ガード受付時間より早い
                 guardTimingStr = "ガードできない"; // デバッグ用
-                if (Input.GetKeyDown(KeyCode.G)) // プレイヤー側のInputにそのうち変える
+                if (player.GuardInp)
                 {
                     Debug.Log("ガードボタンを押すのが早すぎ");
                     Debug.Log("ガード失敗");
