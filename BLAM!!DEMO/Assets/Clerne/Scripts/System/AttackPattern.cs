@@ -7,8 +7,6 @@ public class AttackPattern : MonoBehaviour
 {
     [Header("ステータス")]
 
-    [SerializeField, Tooltip("最大体力")]
-    int maxHp; 
     [SerializeField, Tooltip("対体力攻撃力")]
     int hpAtk;
     [SerializeField, Tooltip("対スタミナ攻撃力")]
@@ -18,6 +16,8 @@ public class AttackPattern : MonoBehaviour
 
     [Header("時間設定（秒）")]
 
+    [SerializeField, ReadOnly]
+    private float time;     // パターン内の経過時間
     [SerializeField, Tooltip("攻撃開始時間")]
     float startTiming;
     [SerializeField, Tooltip("攻撃全体時間（終了時間）")]
@@ -33,9 +33,14 @@ public class AttackPattern : MonoBehaviour
     [SerializeField,Tooltip("ジャスト回避可能時間（攻撃ヒットタイミングからの時間）")]
     float justDodgeTime;
 
-    private bool patternEnd = false; // パターン終了フラグ
+    [Header("チャンスタイム設定")]
+    [SerializeField, Tooltip("チャンスタイム")]
+    bool chance;
 
     Player player;
+    Enemy enemy;
+
+    private bool patternEnd = false; // パターン終了フラグ
 
     public bool PatternEnd
     {
@@ -46,28 +51,39 @@ public class AttackPattern : MonoBehaviour
         
     }
 
-    private int hp; //
-
     private bool dodged = false;                // 回避行動フラグ
     private bool dodgeSuccesed = false;         // 回避成功フラグ
     private bool guarded = false;               // ガード行動フラグ
     private bool guardSuccesed = false;         // ガード成功フラグ
     private bool dodgeAndGuardFailed = false;   // 対処行動失敗フラグ
+    private bool canCounter = false;            // カウンター可能フラグ
+    private bool counterSuccesed = false;       // カウンター成功フラグ
 
-    [SerializeField ,ReadOnly]
-    private float time;     // パターン内の経過時間
 
 
     [Header("デバッグ用")]
 
+
     Text debugHpText;
+    Text debugSpText;
     Text debugDodgeText;
     Text debugGuardText;
     Text debugDoText;
+    Text debugAttText;
+    Text debugComboText;
+
+    private bool debugMode;
+
+    public bool DebugMode
+    {
+        set { debugMode = value; }
+    }
 
     private string dodgeTimingStr;
 
     private string guardTimingStr;
+
+    private string attStr;
 
     private string doStr;
 
@@ -75,18 +91,29 @@ public class AttackPattern : MonoBehaviour
     {
         time = 0;
 
-        hp = maxHp;
-
-
         player = GameObject.Find("Player").GetComponent<Player>();
+        enemy = gameObject.transform.parent.gameObject.GetComponent<Enemy>();
 
-        debugDodgeText = GameObject.Find("DebugText/Dodge").GetComponent<Text>();
+        // デバッグ用
+        if (debugMode)
+        {
+            debugHpText = GameObject.Find("DebugText/HP").GetComponent<Text>();
 
-        debugGuardText = GameObject.Find("DebugText/Guard").GetComponent<Text>();
+            debugSpText = GameObject.Find("DebugText/SP").GetComponent<Text>();
 
-        debugDoText = GameObject.Find("DebugText/Do").GetComponent<Text>();
+            debugDodgeText = GameObject.Find("DebugText/Dodge").GetComponent<Text>();
 
-        debugHpText = GameObject.Find("DebugText/HP").GetComponent<Text>();
+            debugGuardText = GameObject.Find("DebugText/Guard").GetComponent<Text>();
+
+            debugAttText = GameObject.Find("DebugText/Att").GetComponent<Text>();
+
+            debugComboText = GameObject.Find("DebugText/Combo").GetComponent<Text>();
+
+            debugDoText = GameObject.Find("DebugText/Do").GetComponent<Text>();
+
+
+        }
+
 
     }
 
@@ -97,13 +124,18 @@ public class AttackPattern : MonoBehaviour
 
         PatternController();
 
-        DebugText();
+
 
         if (dodgeAndGuardFailed)
         {
-            player.Hp -= 100;
+            player.Hp -= hpAtk;
+            player.Combo = 0;   // コンボをリセット
             dodgeAndGuardFailed = false;
         }
+
+        // デバッグ用
+        if (debugMode) DebugText();
+
     }
 
     void PatternController()
@@ -112,10 +144,16 @@ public class AttackPattern : MonoBehaviour
         {
             Debug.Log("攻撃開始");
 
-            DodgeController();
+            if (chance) ChanceTimeController();
+            else
+            {
+                DodgeController();
 
-            GuardController();
+                GuardController();
 
+            }
+
+            CounterController();
 
         }
         else if(time >= patternTime)
@@ -124,16 +162,6 @@ public class AttackPattern : MonoBehaviour
         }
     }
 
-    void DebugText()
-    {
-        debugHpText.text = "エネミーHP:" + hp + " プレイヤーHP:" + player.Hp;
-
-        debugDodgeText.text = "経過時間 " + time.ToString("F2") + " " + dodgeTimingStr;
-
-        debugGuardText.text = guardTimingStr;
-
-        debugDoText.text = doStr;
-    }
 
     void DodgeController()
     {
@@ -144,6 +172,7 @@ public class AttackPattern : MonoBehaviour
 
             if (time >= TimingNum(dodgeTime) && dodged == false && guarded == false)
             {   // 回避可能時間
+
                 if (time >= TimingNum(justDodgeTime))
                 {   // ジャスト回避可能時間
                     dodgeTimingStr = "ジャスト回避可能"; // デバッグ用
@@ -152,11 +181,21 @@ public class AttackPattern : MonoBehaviour
                     if (player.DodgeInp)
                     {
                         Debug.Log("ジャスト回避成功");
-                        doStr = "ジャスト回避成功"; // デバッグ用
+
+                        // 軽攻撃の場合
+                        if (atkAtt == false) player.Sp -= spAtk / 2;    // 適切でない行動なのでスタミナ減
+                        // 重攻撃の場合
+                        else canCounter = true; // 適切な行動かつジャストなのでカウンター可能に
 
 
                         dodgeSuccesed = true;
                         dodged = true;
+
+
+                        // デバッグ用
+                        doStr = "ジャスト回避成功";
+
+
                     }
 
                 }
@@ -166,10 +205,17 @@ public class AttackPattern : MonoBehaviour
                     if (player.DodgeInp) 
                     {
                         Debug.Log("通常回避成功");
-                        doStr = "通常回避成功"; // デバッグ用
+
+                        // 軽攻撃の場合
+                        if (atkAtt == false) player.Sp -= spAtk;    // 適切でない行動なのでスタミナ減
+                        // 重攻撃の場合
+                        else player.Sp -= 0;    // 適切な行動なのでスタミナ減らず
 
                         dodgeSuccesed = true;
                         dodged = true;
+
+                        // デバッグ用
+                        doStr = "通常回避成功";
 
                     }
 
@@ -182,10 +228,15 @@ public class AttackPattern : MonoBehaviour
                 {
                     Debug.Log("回避ボタンを押すのが早すぎ");
                     Debug.Log("回避失敗");
-                    doStr = "回避失敗(fast)"; // デバッグ用
 
+                    player.Sp -= spAtk;
 
                     dodged = true;
+
+                    // デバッグ用
+                    doStr = "回避失敗(fast)";
+
+
 
                 }
             }
@@ -220,10 +271,21 @@ public class AttackPattern : MonoBehaviour
                     if (player.GuardInp) 
                     {
                         Debug.Log("ジャストガード成功");
-                        doStr = "ジャストガード成功";
+
+                        // 軽攻撃の場合
+                        if (atkAtt == false) canCounter = true; // 適切な行動かつジャストなのでカウンター可能に
+                        // 重攻撃の場合
+                        else player.Sp -= spAtk / 2;    // 適切でない行動なのでスタミナ減
+
 
                         guardSuccesed = true;
                         guarded = true;
+
+                        canCounter = true;
+
+                        // デバッグ用
+                        doStr = "ジャストガード成功";
+
                     }
 
                 }
@@ -233,10 +295,18 @@ public class AttackPattern : MonoBehaviour
                     if (player.GuardInp) 
                     {
                         Debug.Log("通常ガード成功");
-                        doStr = "通常ガード成功";
+
+                        // 軽攻撃の場合
+                        if (atkAtt == false) player.Sp -= 0;    // 適切な行動なのでスタミナ減らず
+                        // 重攻撃の場合
+                        else player.Sp -= spAtk; // 適切でない行動なのでスタミナ減
 
                         guardSuccesed = true;
                         guarded = true;
+
+                        // デバッグ用
+                        doStr = "通常ガード成功";
+
 
                     }
 
@@ -249,9 +319,13 @@ public class AttackPattern : MonoBehaviour
                 {
                     Debug.Log("ガードボタンを押すのが早すぎ");
                     Debug.Log("ガード失敗");
-                    doStr = "ガード失敗";
+
+                    player.Sp -= spAtk;
 
                     guarded = true;
+
+                    // デバッグ用
+                    doStr = "ガード失敗";
 
                 }
             }
@@ -268,9 +342,73 @@ public class AttackPattern : MonoBehaviour
         }
 
     }
+
+    void CounterController()
+    {
+        if (canCounter && counterSuccesed == false)
+        {
+            
+            if (player.AttackInp)
+            {
+                Debug.Log("カウンター成功");
+
+                TakeDamage(player.AtkPow);
+
+                counterSuccesed = true;
+
+                // デバッグ用
+                doStr = "カウンター成功！";
+            }
+        }
+    }
+
+    void ChanceTimeController()
+    {
+        Debug.Log("チャンスタイム中!");
+
+        if (player.AttackInp) TakeDamage(player.AtkPow);
+
+        // デバッグ用
+        attStr = "チャンスタイム中!";
+    }
     float TimingNum(float n)
     {
         float timing = attackTiming - n;
         return timing;
     }
+
+    void TakeDamage(int damage)
+    {
+        enemy.Hp -= damage;
+        player.Combo++;
+    }
+
+    void DebugText()
+    {
+        debugHpText.text = "エネミーHP:" + enemy.Hp + " プレイヤーHP:" + player.Hp;
+
+        debugSpText.text = "プレイヤーSP:" + player.Sp.ToString("F1");
+
+        debugDodgeText.text = "経過時間 " + time.ToString("F2") + " " + dodgeTimingStr;
+
+        debugGuardText.text = guardTimingStr;
+
+
+        if(chance== true)
+        {
+            attStr = "チャンスタイム中!";
+        }
+        else
+        {
+            if (atkAtt == false) attStr = "軽攻撃";
+            else if (atkAtt == true) attStr = "重攻撃";
+        }
+
+        debugAttText.text = "攻撃属性:" + attStr;
+
+        debugComboText.text = player.Combo + "コンボ！";
+
+        debugDoText.text = doStr;
+    }
+
 }

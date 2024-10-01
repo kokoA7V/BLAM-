@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7532116061481750891}
   - component: {fileID: 7532116061481750892}
   m_Layer: 0
-  m_Name: Pattern3
+  m_Name: Pattarn4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd326694bc612e43be1d20b59400206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
   hpAtk: 100
   spAtk: 50
   atkAtt: 1
@@ -55,4 +54,5 @@ MonoBehaviour:
   justGuardTime: 1
   dodgeTime: 3
   justDodgeTime: 1
+  chance: 1
   time: 0

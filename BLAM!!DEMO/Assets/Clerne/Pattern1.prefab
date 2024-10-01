@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 10
   hpAtk: 100
-  spAtk: 100
+  spAtk: 30
   atkAtt: 0
   startTiming: 0
   patternTime: 6
@@ -56,4 +56,3 @@ MonoBehaviour:
   dodgeTime: 3
   justDodgeTime: 1
   time: 0
-  playerMaxHp: 1000
