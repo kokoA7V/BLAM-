@@ -158,7 +158,6 @@ public class AttackPattern : MonoBehaviour
             {
                 patternEnd = true;
 
-                enemy.PatternChange = false;
             }
 
         }
