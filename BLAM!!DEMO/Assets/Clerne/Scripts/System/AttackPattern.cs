@@ -42,6 +42,8 @@ public class AttackPattern : MonoBehaviour
     bool anim_Attack1;
     [SerializeField]
     bool anim_Attack2;
+    [SerializeField]
+    string animName;    // ’Ç‰Á
 
     Player player;
     Enemy enemy;
@@ -429,6 +431,9 @@ public class AttackPattern : MonoBehaviour
         if (anim_Attack1) enemy.AnimAttack1 = true;
 
         if (anim_Attack2) enemy.AnimAttack2 = true;
+
+        // ’Ç‰Á
+        enemy.animDic[animName] = true;
 
     }
 

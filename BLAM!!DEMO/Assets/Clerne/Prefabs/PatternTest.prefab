@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7532116061481750891}
   - component: {fileID: 7532116061481750892}
   m_Layer: 0
-  m_Name: Pattarn4
+  m_Name: PatternTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,13 +49,13 @@ MonoBehaviour:
   atkAtt: 1
   time: 0
   startTiming: 0
-  patternTime: 3
-  attackTiming: 7
-  guardTime: 3
-  justGuardTime: 1
-  dodgeTime: 3
-  justDodgeTime: 1
-  chance: 1
+  patternTime: 4
+  attackTiming: 2
+  guardTime: 0.5
+  justGuardTime: 0.2
+  dodgeTime: 0.5
+  justDodgeTime: 0.2
+  chance: 0
   anim_Attack1: 0
   anim_Attack2: 0
-  animName: 
+  animName: Attack3
