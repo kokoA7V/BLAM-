@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class ButtomEffect : MonoBehaviour
+public class BackButton : MonoBehaviour
 {
     private Button button;
-
-    private EventTrigger eventTrigger;
-
     [SerializeField, Header("カーソル合わせた時に出てくるやつ")]
     private GameObject bigImage;
+
+    private EventTrigger eventTrigger;
+    // Start is called before the first frame update
     void Start()
     {
         bigImage.SetActive(false);
@@ -29,12 +29,16 @@ public class ButtomEffect : MonoBehaviour
         onPoiterExit.eventID = EventTriggerType.PointerExit;
         onPoiterExit.callback.AddListener((data) => { OnPointerExitButton(); });
         eventTrigger.triggers.Add(onPoiterExit);
-
     }
 
     private void ButtonClicked()
     {
-        Debug.Log("押されたよ");
+        transform.parent.gameObject.SetActive(false);
+        if (transform.parent.gameObject.name== "PauseCanvas")
+        {
+            Time.timeScale = 1;
+        }
+        OnPointerExitButton();
     }
     private void OnPointerButton()
     {
@@ -45,5 +49,4 @@ public class ButtomEffect : MonoBehaviour
     {
         bigImage.SetActive(false);
     }
-
 }
