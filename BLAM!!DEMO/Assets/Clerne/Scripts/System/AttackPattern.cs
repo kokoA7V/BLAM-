@@ -37,6 +37,12 @@ public class AttackPattern : MonoBehaviour
     [SerializeField, Tooltip("チャンスタイム")]
     bool chance;
 
+    [Header("アニメーション設定")]
+    [SerializeField]
+    bool anim_Attack1;
+    [SerializeField]
+    bool anim_Attack2;
+
     Player player;
     Enemy enemy;
 
@@ -58,7 +64,6 @@ public class AttackPattern : MonoBehaviour
     private bool dodgeAndGuardFailed = false;   // 対処行動失敗フラグ
     private bool canCounter = false;            // カウンター可能フラグ
     private bool counterSuccesed = false;       // カウンター成功フラグ
-    private float cooltimeCount;            // チャンスタイム中攻撃クールタイム
 
 
 
@@ -127,6 +132,8 @@ public class AttackPattern : MonoBehaviour
 
         PlayerAnimFlag();
 
+
+
         if (dodgeAndGuardFailed)
         {
             player.Hp -= hpAtk;
@@ -149,6 +156,8 @@ public class AttackPattern : MonoBehaviour
         if(time >= startTiming && time <= patternTime)
         {
             Debug.Log("攻撃開始");
+
+            EnemyAnimFlag();
 
             if (chance) ChanceTimeController();
             else
@@ -264,6 +273,13 @@ public class AttackPattern : MonoBehaviour
         {
             Debug.Log("攻撃対処失敗");
             Debug.Log("HP減らす");
+
+            // デバッグ用
+            dodgeTimingStr = "回避できない";
+            guardTimingStr = "ガードできない";
+            doStr = "対処失敗(slow)";
+
+
 
             dodgeAndGuardFailed = true;
 
@@ -391,7 +407,6 @@ public class AttackPattern : MonoBehaviour
     {
 
         Debug.Log("チャンスタイム中!");
-        cooltimeCount += Time.deltaTime;
 
         if (player.AttackInp)
         {
@@ -399,7 +414,6 @@ public class AttackPattern : MonoBehaviour
 
             player.AnimAttack = true;
 
-            cooltimeCount = 0;
         }
         // デバッグ用
         attStr = "チャンスタイム中!";
@@ -408,6 +422,14 @@ public class AttackPattern : MonoBehaviour
     void PlayerAnimFlag()
     {
         player.AnimChanceTime = chance;
+    }
+
+    void EnemyAnimFlag()
+    {
+        if (anim_Attack1) enemy.AnimAttack1 = true;
+
+        if (anim_Attack2) enemy.AnimAttack2 = true;
+
     }
 
     float TimingNum(float n)
