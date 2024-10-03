@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -52,7 +53,8 @@ namespace UI
             switch (buttonNum)
             {
                 case ButtonNum.Restart:
-
+                    Time.timeScale = 1;
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                     break;
                 case ButtonNum.StageSelect:
 

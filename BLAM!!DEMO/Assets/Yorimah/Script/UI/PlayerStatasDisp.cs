@@ -10,14 +10,16 @@ public class PlayerStatasDisp : MonoBehaviour
 
     [SerializeField, Header("HPTEXT")]
     private Text hpText;
+
     [SerializeField, Header("SPTEXT")]
     private Text spText;
+    
     [SerializeField, Header("COMBOTEXT")]
     private Text comboText;
 
     [SerializeField, Header("É|Å[ÉY")]
     private GameObject pauseObject;
-    // Start is called before the first frame update
+
     void Start()
     {
         hpText.text = "HP "+player.Hp;
