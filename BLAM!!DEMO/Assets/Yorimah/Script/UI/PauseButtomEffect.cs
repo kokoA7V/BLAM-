@@ -16,9 +16,6 @@ namespace UI
         private GameObject bigImage;
 
         [SerializeField, Header("ポーズキャンバス")]
-        private GameObject pauseCanvas;
-
-        [SerializeField, Header("ポーズキャンバス")]
         private GameObject optionCanvas;
 
         private enum ButtonNum

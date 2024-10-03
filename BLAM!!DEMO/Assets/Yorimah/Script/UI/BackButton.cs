@@ -34,6 +34,10 @@ public class BackButton : MonoBehaviour
     private void ButtonClicked()
     {
         transform.parent.gameObject.SetActive(false);
+        if (transform.parent.gameObject.name== "PauseCanvas")
+        {
+            Time.timeScale = 1;
+        }
         OnPointerExitButton();
     }
     private void OnPointerButton()
