@@ -47,12 +47,14 @@ MonoBehaviour:
   hpAtk: 100
   spAtk: 50
   atkAtt: 1
+  time: 0
   startTiming: 0
-  patternTime: 8
+  patternTime: 3
   attackTiming: 7
   guardTime: 3
   justGuardTime: 1
   dodgeTime: 3
   justDodgeTime: 1
   chance: 1
-  time: 0
+  anim_Attack1: 0
+  anim_Attack2: 0
