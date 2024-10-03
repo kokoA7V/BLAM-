@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd326694bc612e43be1d20b59400206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
   hpAtk: 100
   spAtk: 30
   atkAtt: 0
+  time: 0
   startTiming: 0
   patternTime: 4
   attackTiming: 3.5
@@ -55,4 +55,6 @@ MonoBehaviour:
   justGuardTime: 1
   dodgeTime: 3
   justDodgeTime: 1
-  time: 0
+  chance: 0
+  anim_Attack1: 0
+  anim_Attack2: 1

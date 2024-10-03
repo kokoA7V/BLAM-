@@ -23,6 +23,24 @@ public class Enemy : MonoBehaviour
 
     private bool patternChange;
 
+    // アニメーション関連
+
+    Animator anim;
+
+    private bool _animAttack1;
+    private bool _animAttack2;
+
+    public bool AnimAttack1
+    {
+        set { _animAttack1 = value; }
+    }
+    public bool AnimAttack2
+    {
+        set { _animAttack2 = value; }
+    }
+
+
+
     public float Hp
     {
         get { return _hp; }
@@ -49,11 +67,13 @@ public class Enemy : MonoBehaviour
     {
         _hp = maxHp;
 
+        anim = gameObject.GetComponent<Animator>();
+
         nowPattern = firstPattern;
 
         Instantiate(nowPattern[patternNum],transform);    // 子にパターンのプレハブを生成
 
-        nowObj = gameObject.transform.GetChild(0).gameObject;   // 子のオブジェクトを取得
+        nowObj = gameObject.transform.GetChild(5).gameObject;   // 子のオブジェクトを取得
 
         attackPattern = nowObj.GetComponent<AttackPattern>();   // 取得したオブジェクトのパターンスクリプトを取得
 
@@ -63,6 +83,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+
+        AnimController();
+
+
         // HPが半分を切ったら
         if (_hp / maxHp < 0.5f && isSecondPattern == false)
         {
@@ -96,7 +120,7 @@ public class Enemy : MonoBehaviour
             Instantiate(nowPattern[patternNum],transform); // 次のパターンを生成
 
 
-            nowObj = gameObject.transform.GetChild(1).gameObject; // 次のパターンを取得
+            nowObj = gameObject.transform.GetChild(6).gameObject; // 次のパターンを取得
 
             attackPattern = nowObj.GetComponent<AttackPattern>(); // パターンのスクリプトを取得
 
@@ -107,5 +131,15 @@ public class Enemy : MonoBehaviour
 
 
     }
+    void AnimController()
+    {
+        anim.SetBool("Attack1", _animAttack1);
+        if (_animAttack1) _animAttack1 = false;
+
+        anim.SetBool("Attack2", _animAttack2);
+        if (_animAttack2) _animAttack2 = false;
+
+    }
+
 
 }
