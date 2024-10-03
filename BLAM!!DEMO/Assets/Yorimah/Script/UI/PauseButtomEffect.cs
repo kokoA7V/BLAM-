@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace UI
 {
-    public class ButtomEffect : MonoBehaviour
+    public class PauseButtomEffect : MonoBehaviour
     {
         private Button button;
 
@@ -18,12 +18,14 @@ namespace UI
         [SerializeField, Header("ポーズキャンバス")]
         private GameObject pauseCanvas;
 
+        [SerializeField, Header("ポーズキャンバス")]
+        private GameObject optionCanvas;
+
         private enum ButtonNum
         {
             StageSelect,
             Restart,
             Option,
-            back,
         }
 
         [SerializeField,Header("ボタン番号")]
@@ -59,10 +61,7 @@ namespace UI
 
                     break;
                 case ButtonNum.Option:
-                    pauseCanvas.SetActive(false);
-                    break;
-                case ButtonNum.back:
-                    pauseCanvas.SetActive(false);
+                    optionCanvas.SetActive(true);
                     break;
             }
             Debug.Log("押されたよ");
