@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     private float maxSp;
     [SerializeField, Tooltip("スタミナ回復量（秒）")]
     private float spRecov;
+    [SerializeField, Tooltip("チャンスタイム中攻撃クールタイム")]
+    private float chanceAtkCooltime;
 
     [Header("入力")]
     [SerializeField]
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
 
         set { _sp = value; }
     }
+
     public int Combo
     {
         get { return _combo; }
@@ -68,7 +71,54 @@ public class Player : MonoBehaviour
         get { return _guard; }
     }
 
-    
+
+
+    // アニメーション関連
+
+    Animator anim;
+
+    private bool _animAttack;
+    private bool _animDodge;
+    private bool _animGuard;
+    private bool _animCanCounter;
+    private bool _animCounter;
+    private bool _animDamageLight;
+    private bool _animDamageHeavy;
+    private bool _animChanceTime;
+
+    public bool AnimAttack
+    {
+        set { _animAttack = value; }
+    }
+    public bool AnimDodge
+    {
+        set { _animDodge = value; }
+    }
+    public bool AnimGuard
+    {
+        set { _animGuard = value; }
+    }
+    public bool AnimCounter
+    {
+        set { _animCounter = value; }
+    }
+    public bool AnimCanCounter
+    {
+        set { _animCanCounter = value; }
+    }
+    public bool AnimDamageLight
+    {
+        set { _animDamageLight = value; }
+    }
+
+    public bool AnimDamageHeavy
+    {
+        set { _animDamageHeavy = value; }
+    }
+    public bool AnimChanceTime
+    {
+        set { _animChanceTime = value; }
+    }
 
     void Start()
     {
@@ -83,6 +133,8 @@ public class Player : MonoBehaviour
         dodgeInput.Enable();
 
         guardInput.Enable();
+
+        anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -91,6 +143,8 @@ public class Player : MonoBehaviour
         PlayerInput();
 
         PlayerStates();
+
+        AnimController();
     }
 
     void PlayerInput()
@@ -110,5 +164,29 @@ public class Player : MonoBehaviour
     {
         if (_sp < maxSp) _sp += Time.deltaTime * spRecov;
         else _sp = maxSp;
+    }
+
+    void AnimController()
+    {
+        anim.SetBool("Attack", _animAttack);
+        if (_animAttack) _animAttack = false;
+
+        anim.SetBool("Dodge", _animDodge);
+        if (_animDodge) _animDodge = false;
+
+        anim.SetBool("Guard", _animGuard);
+        if (_animGuard) _animGuard = false;
+
+        anim.SetBool("CanCounter", _animCanCounter);
+
+        anim.SetBool("Counter", _animCounter);
+
+        anim.SetBool("Damage_Light", _animDamageLight);
+        if (_animDamageLight) _animDamageLight = false;
+
+        anim.SetBool("Damage_Heavy", _animDamageHeavy);
+        if (_animDamageHeavy) _animDamageHeavy = false;
+
+        anim.SetBool("ChanceTime", _animChanceTime);
     }
 }

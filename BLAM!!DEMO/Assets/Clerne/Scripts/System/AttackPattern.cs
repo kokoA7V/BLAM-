@@ -58,6 +58,7 @@ public class AttackPattern : MonoBehaviour
     private bool dodgeAndGuardFailed = false;   // 対処行動失敗フラグ
     private bool canCounter = false;            // カウンター可能フラグ
     private bool counterSuccesed = false;       // カウンター成功フラグ
+    private float cooltimeCount;            // チャンスタイム中攻撃クールタイム
 
 
 
@@ -124,12 +125,19 @@ public class AttackPattern : MonoBehaviour
 
         PatternController();
 
+        PlayerAnimFlag();
+
         if (dodgeAndGuardFailed)
         {
             player.Hp -= hpAtk;
             player.Combo = 0;   // コンボをリセット
+            if (atkAtt == false) player.AnimDamageLight = true;   // 軽ダメージモーション
+            else player.AnimDamageHeavy = true; // 重ダメージモーション
+
             dodgeAndGuardFailed = false;
+
         }
+
 
         // デバッグ用
         if (debugMode) DebugText();
@@ -196,6 +204,8 @@ public class AttackPattern : MonoBehaviour
                         dodgeSuccesed = true;
                         dodged = true;
 
+                        player.AnimDodge = true;
+
 
                         // デバッグ用
                         doStr = "ジャスト回避成功";
@@ -218,6 +228,9 @@ public class AttackPattern : MonoBehaviour
 
                         dodgeSuccesed = true;
                         dodged = true;
+
+                        player.AnimDodge = true;
+
 
                         // デバッグ用
                         doStr = "通常回避成功";
@@ -286,6 +299,8 @@ public class AttackPattern : MonoBehaviour
                         guardSuccesed = true;
                         guarded = true;
 
+                        player.AnimGuard = true;
+
                         canCounter = true;
 
                         // デバッグ用
@@ -308,6 +323,8 @@ public class AttackPattern : MonoBehaviour
 
                         guardSuccesed = true;
                         guarded = true;
+
+                        player.AnimGuard = true;
 
                         // デバッグ用
                         doStr = "通常ガード成功";
@@ -350,6 +367,7 @@ public class AttackPattern : MonoBehaviour
 
     void CounterController()
     {
+        player.AnimCanCounter = canCounter;
         if (canCounter && counterSuccesed == false)
         {
             
@@ -361,6 +379,8 @@ public class AttackPattern : MonoBehaviour
 
                 counterSuccesed = true;
 
+                player.AnimCounter = true;
+
                 // デバッグ用
                 doStr = "カウンター成功！";
             }
@@ -369,12 +389,25 @@ public class AttackPattern : MonoBehaviour
 
     void ChanceTimeController()
     {
+
         Debug.Log("チャンスタイム中!");
+        cooltimeCount += Time.deltaTime;
 
-        if (player.AttackInp) TakeDamage(player.AtkPow);
+        if (player.AttackInp)
+        {
+            TakeDamage(player.AtkPow);
 
+            player.AnimAttack = true;
+
+            cooltimeCount = 0;
+        }
         // デバッグ用
         attStr = "チャンスタイム中!";
+    }
+
+    void PlayerAnimFlag()
+    {
+        player.AnimChanceTime = chance;
     }
 
     float TimingNum(float n)
