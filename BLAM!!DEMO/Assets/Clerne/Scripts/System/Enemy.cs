@@ -30,11 +30,8 @@ public class Enemy : MonoBehaviour
     private bool _animAttack1;
     private bool _animAttack2;
 
-    // アニメディクショナリー追加するンゴ
-
-    [SerializeField]
-    string[] animList;
-
+    // アニメディクショナリー追加
+    // パターンから取得してAdd
     public Dictionary<string, bool> animDic = new Dictionary<string, bool>();
 
 
@@ -87,11 +84,6 @@ public class Enemy : MonoBehaviour
         attackPattern = nowObj.GetComponent<AttackPattern>();   // 取得したオブジェクトのパターンスクリプトを取得
 
         attackPattern.DebugMode = debugMode;                    // デバッグモードを有効化
-
-        foreach (var item in animList)
-        {
-            animDic.Add(item, false);
-        }
     }
 
     void Update()
@@ -152,10 +144,11 @@ public class Enemy : MonoBehaviour
         anim.SetBool("Attack2", _animAttack2);
         if (_animAttack2) _animAttack2 = false;
 
-        foreach (var item in animList)
+        // アニメディクショナリー再生
+        foreach (KeyValuePair<string, bool> item in animDic)
         {
-            anim.SetBool(item, animDic[item]);
-            if (animDic[item]) animDic[item] = false;
+            anim.SetBool(item.Key, animDic[item.Key]);
+            if (animDic[item.Key]) animDic[item.Key] = false;
         }
 
     }

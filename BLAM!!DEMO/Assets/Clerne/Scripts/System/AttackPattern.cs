@@ -432,7 +432,12 @@ public class AttackPattern : MonoBehaviour
 
         if (anim_Attack2) enemy.AnimAttack2 = true;
 
-        // 追加
+        // ディクショナリー内に無い場合はAdd
+        if (enemy.animDic.ContainsKey(animName) == false)
+        {
+            enemy.animDic.Add(animName, false);
+        }
+        // 再生
         enemy.animDic[animName] = true;
 
     }

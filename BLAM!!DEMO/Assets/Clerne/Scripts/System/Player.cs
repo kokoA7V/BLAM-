@@ -86,6 +86,12 @@ public class Player : MonoBehaviour
     private bool _animDamageHeavy;
     private bool _animChanceTime;
 
+    // アニメーションディクショナリー
+    Dictionary<string, bool> animDic = new Dictionary<string, bool>();
+    // ディクショナリー登録用List、Inspectorから追加
+    [SerializeField]
+    List<string> animList = new List<string>();
+
     public bool AnimAttack
     {
         set { _animAttack = value; }
@@ -135,6 +141,12 @@ public class Player : MonoBehaviour
         guardInput.Enable();
 
         anim = gameObject.GetComponent<Animator>();
+
+        // animListの要素をanimDicにAdd
+        foreach (string item in animList)
+        {
+            animDic.Add(item, false);
+        }
     }
 
     // Update is called once per frame
@@ -188,5 +200,12 @@ public class Player : MonoBehaviour
         if (_animDamageHeavy) _animDamageHeavy = false;
 
         anim.SetBool("ChanceTime", _animChanceTime);
+
+        // ディクショナリー再生
+        foreach (KeyValuePair<string, bool> item in animDic)
+        {
+            anim.SetBool(item.Key, animDic[item.Key]);
+            if (animDic[item.Key]) animDic[item.Key] = false;
+        }
     }
 }

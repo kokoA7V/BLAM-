@@ -1298,8 +1298,7 @@ MonoBehaviour:
   secondPattern:
   - {fileID: 8285478861154980054, guid: e5437bb9589fbd74dbc3db9f5e52a49b, type: 3}
   - {fileID: 7532116061481750893, guid: df83755630130e14990cb1efe7c0ede2, type: 3}
-  animList:
-  - Attack3
+  animList: []
 --- !u!1 &1620590546
 GameObject:
   m_ObjectHideFlags: 0
