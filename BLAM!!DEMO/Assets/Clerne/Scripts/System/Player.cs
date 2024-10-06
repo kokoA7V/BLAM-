@@ -192,6 +192,7 @@ public class Player : MonoBehaviour
         anim.SetBool("CanCounter", _animCanCounter);
 
         anim.SetBool("Counter", _animCounter);
+        // AttackPattern‚Ì•û‚Åfalse‚É‚·‚é
 
         anim.SetBool("Damage_Light", _animDamageLight);
         if (_animDamageLight) _animDamageLight = false;

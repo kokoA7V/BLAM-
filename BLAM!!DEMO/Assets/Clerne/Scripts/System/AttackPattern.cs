@@ -16,7 +16,7 @@ public class AttackPattern : MonoBehaviour
 
     [Header("時間設定（秒）")]
 
-    [SerializeField, ReadOnly]
+    [SerializeField, Tooltip("変更しないでね！")]
     private float time;     // パターン内の経過時間
     [SerializeField, Tooltip("攻撃開始時間")]
     float startTiming;
@@ -38,10 +38,10 @@ public class AttackPattern : MonoBehaviour
     bool chance;
 
     [Header("アニメーション設定")]
-    [SerializeField]
-    bool anim_Attack1;
-    [SerializeField]
-    bool anim_Attack2;
+    //[SerializeField]
+    //bool anim_Attack1;
+    //[SerializeField]
+    //bool anim_Attack2;
     [SerializeField]
     string animName;    // 追加
 
@@ -59,6 +59,8 @@ public class AttackPattern : MonoBehaviour
         
     }
 
+
+
     private bool dodged = false;                // 回避行動フラグ
     private bool dodgeSuccesed = false;         // 回避成功フラグ
     private bool guarded = false;               // ガード行動フラグ
@@ -67,7 +69,22 @@ public class AttackPattern : MonoBehaviour
     private bool canCounter = false;            // カウンター可能フラグ
     private bool counterSuccesed = false;       // カウンター成功フラグ
 
+    // カウンター演出用
+    public bool CanCounter
+    {
+        get
+        {
+            return canCounter;
+        }
+    }
 
+    public bool CounterSuccesed
+    {
+        get
+        {
+            return counterSuccesed;
+        }
+    }
 
     [Header("デバッグ用")]
 
@@ -103,9 +120,16 @@ public class AttackPattern : MonoBehaviour
         enemy = gameObject.transform.parent.gameObject.GetComponent<Enemy>();
 
         // ディクショナリー内に無い場合はAdd
-        if (enemy.animDic.ContainsKey(animName) == false)
+        //if (enemy.animDic.ContainsKey(animName) == false)
+        //{
+        //    enemy.animDic.Add(animName, false);
+        //}
+        if (animName != "")
         {
-            enemy.animDic.Add(animName, false);
+            if (!enemy.animList.Contains(animName))
+            {
+                enemy.animList.Add(animName);
+            }
         }
 
         // デバッグ用
@@ -325,7 +349,7 @@ public class AttackPattern : MonoBehaviour
 
                         player.AnimGuard = true;
 
-                        canCounter = true;
+                        //canCounter = true;
 
                         // デバッグ用
                         doStr = "ジャストガード成功";
@@ -409,6 +433,13 @@ public class AttackPattern : MonoBehaviour
                 doStr = "カウンター成功！";
             }
         }
+
+        // Caunterをfalse
+        if (canCounter == false)
+        {
+            player.AnimCounter = false;
+        }
+
     }
 
     void ChanceTimeController()
@@ -434,9 +465,8 @@ public class AttackPattern : MonoBehaviour
 
     void EnemyAnimFlag()
     {
-        if (anim_Attack1) enemy.AnimAttack1 = true;
-
-        if (anim_Attack2) enemy.AnimAttack2 = true;
+        //if (anim_Attack1) enemy.AnimAttack1 = true;
+        //if (anim_Attack2) enemy.AnimAttack2 = true;
 
         // 再生
         enemy.animDic[animName] = true;
