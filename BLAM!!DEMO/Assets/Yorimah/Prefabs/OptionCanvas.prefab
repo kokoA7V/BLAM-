@@ -891,6 +891,7 @@ GameObject:
   - component: {fileID: 6090806648585605626}
   - component: {fileID: 7000590164394281594}
   - component: {fileID: 979205419434988013}
+  - component: {fileID: 6162895111219874970}
   m_Layer: 5
   m_Name: OptionCanvas
   m_TagString: Untagged
@@ -991,6 +992,27 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!95 &6162895111219874970
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6134423422652854563}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b1cfac4c1f20f8c42b6f60bd1091bdb1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6497481819890480235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,7 +1174,7 @@ GameObject:
   - component: {fileID: 6890862642181472016}
   - component: {fileID: 667382674549513700}
   m_Layer: 5
-  m_Name: BigBack
+  m_Name: BigOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1736,7 +1758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 286.33334, y: -249}
+  m_AnchoredPosition: {x: 286, y: -249}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7799815155463460455
@@ -2674,6 +2696,7 @@ GameObject:
   - component: {fileID: 8850882394703349816}
   - component: {fileID: 7799815156524970158}
   - component: {fileID: 7429022085356060150}
+  - component: {fileID: 501773830562115373}
   m_Layer: 5
   m_Name: MasterBackGround
   m_TagString: Untagged
@@ -2701,7 +2724,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 450, y: 259}
+  m_AnchoredPosition: {x: 457, y: 259}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7799815156524970159
@@ -2767,6 +2790,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
+--- !u!95 &501773830562115373
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7799815156524970152}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b1cfac4c1f20f8c42b6f60bd1091bdb1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7799815156552898903
 GameObject:
   m_ObjectHideFlags: 0
@@ -3079,7 +3123,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 286.33334, y: -138}
+  m_AnchoredPosition: {x: 286, y: -138}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7799815156849958137
@@ -3735,14 +3779,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7799815157233846269}
-  m_LocalRotation: {x: -0, y: -0, z: 0.037515767, w: 0.9992961}
+  m_LocalRotation: {x: 0, y: 0, z: 0.016579883, w: 0.99986255}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7174548, y: 1.306404, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7799815156849958139}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4.3}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.9}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -5.0286183, y: 11.333324}

@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 2726516184486429314}
   - component: {fileID: 2726516184486429312}
   - component: {fileID: 2726516184486429313}
+  - component: {fileID: 6034410038550037083}
   m_Layer: 5
   m_Name: HP
   m_TagString: Untagged
@@ -160,6 +161,27 @@ MonoBehaviour:
   m_Text: 'HP
 
 '
+--- !u!95 &6034410038550037083
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2726516184486429315}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a486e045f57c9ad48b4baf67ba9a6ae0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2726516184684480958
 GameObject:
   m_ObjectHideFlags: 0

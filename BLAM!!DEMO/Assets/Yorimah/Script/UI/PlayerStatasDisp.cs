@@ -20,11 +20,15 @@ public class PlayerStatasDisp : MonoBehaviour
     [SerializeField, Header("É|Å[ÉY")]
     private GameObject pauseObject;
 
+    private int nowHp;
+    Animator anim;
     void Start()
     {
+        nowHp = player.Hp;
         hpText.text = "HP "+player.Hp;
         spText.text = "SP "+player.Sp;
         comboText.text = "COMBO "+player.Combo;
+        anim = hpText.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,5 +42,17 @@ public class PlayerStatasDisp : MonoBehaviour
             pauseObject.SetActive(true);
             Time.timeScale = 0;
         }
+
+        if (nowHp!=player.Hp)
+        {
+            nowHp = player.Hp;
+            HitPointTextDiration();
+        }
+    }
+
+    private void HitPointTextDiration()
+    {
+        Debug.Log("HPïœÇÌÇ¡ÇΩÇÊ");
+        anim.Play("HpDiration");
     }
 }
