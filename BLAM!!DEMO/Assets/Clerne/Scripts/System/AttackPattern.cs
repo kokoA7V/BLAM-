@@ -47,7 +47,9 @@ public class AttackPattern : MonoBehaviour
 
     Player player;
     Enemy enemy;
+    TimeScaleController timeScaleController;
 
+    private bool timeScaleResetBoolian;
     private bool patternEnd = false; // パターン終了フラグ
 
     public bool PatternEnd
@@ -118,6 +120,7 @@ public class AttackPattern : MonoBehaviour
 
         player = GameObject.Find("Player").GetComponent<Player>();
         enemy = gameObject.transform.parent.gameObject.GetComponent<Enemy>();
+        timeScaleController = GameObject.Find("TimeScaleController").GetComponent<TimeScaleController>();
 
         // ディクショナリー内に無い場合はAdd
         //if (enemy.animDic.ContainsKey(animName) == false)
@@ -164,6 +167,7 @@ public class AttackPattern : MonoBehaviour
 
         PlayerAnimFlag();
 
+        TimeScaleSetting();
 
 
         if (dodgeAndGuardFailed)
@@ -193,6 +197,8 @@ public class AttackPattern : MonoBehaviour
             Debug.Log("攻撃開始");
 
             EnemyAnimFlag();
+
+            timeScaleController.TimeScaleReset();
 
             if (chance) ChanceTimeController();
             else
@@ -224,6 +230,7 @@ public class AttackPattern : MonoBehaviour
     {
         if (time <= attackTiming)
         {
+            timeScaleController.TimeScaleSet(1.2f, 2);
             // デバッグ用
             dodgeTimingStr = "回避できない";
 
@@ -476,6 +483,11 @@ public class AttackPattern : MonoBehaviour
 
         // 再生
         enemy.animDic[animName] = true;
+
+    }
+    void TimeScaleSetting()
+    {
+        if (canCounter) timeScaleController.TimeScaleSet(0.3f, 1);
 
     }
 

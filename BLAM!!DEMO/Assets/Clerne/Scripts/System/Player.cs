@@ -25,6 +25,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     InputAction guardInput;
 
+    [Header("ÇªÇÃëºê›íË")]
+    [SerializeField]
+    TimeScaleController timeScaleController;
+
 
     private int _hp;
     private float _sp;
