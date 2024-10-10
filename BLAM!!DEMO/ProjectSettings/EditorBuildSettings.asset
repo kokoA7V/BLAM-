@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/kokoTitle/Scenes/TitleScene.unity
+    guid: bce5f6cade1ffb643ab3f21985d83f6e
+  - enabled: 1
+    path: Assets/Yorimah/Scenes/SystemTestYori.unity
+    guid: 1b47c4f32a7d38448809a2b81474bfc7
   m_configObjects: {}

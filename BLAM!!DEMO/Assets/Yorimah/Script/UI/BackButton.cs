@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,6 +10,10 @@ public class BackButton : MonoBehaviour
 
     private EventTrigger eventTrigger;
     // Start is called before the first frame update
+
+    private Animator anim;
+
+    AnimatorStateInfo animState;
     void Start()
     {
         bigImage.SetActive(false);
@@ -29,16 +31,23 @@ public class BackButton : MonoBehaviour
         onPoiterExit.eventID = EventTriggerType.PointerExit;
         onPoiterExit.callback.AddListener((data) => { OnPointerExitButton(); });
         eventTrigger.triggers.Add(onPoiterExit);
+
+        anim = transform.parent.gameObject.GetComponent<Animator>();
+        
     }
 
     private void ButtonClicked()
     {
-        transform.parent.gameObject.SetActive(false);
-        if (transform.parent.gameObject.name== "PauseCanvas")
+
+        if (transform.parent.gameObject.name == "PauseCanvas")
         {
-            Time.timeScale = 1;
+            anim.Play("ExitPauseAnimation");
         }
-        OnPointerExitButton();
+        if (transform.parent.gameObject.name == "OptionCanvas")
+        {
+            anim.Play("ExitOptionAnimation");
+        }
+
     }
     private void OnPointerButton()
     {

@@ -57,6 +57,8 @@ namespace UI
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                     break;
                 case ButtonNum.StageSelect:
+                    // ステージセレクト
+                    SceneManager.LoadScene("TitleScene");
 
                     break;
                 case ButtonNum.Option:

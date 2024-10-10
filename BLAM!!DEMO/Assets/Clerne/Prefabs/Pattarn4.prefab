@@ -58,3 +58,4 @@ MonoBehaviour:
   chance: 1
   anim_Attack1: 0
   anim_Attack2: 0
+  animName: 
