@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpAtk: 100
   spAtk: 30
-  atkAtt: 0
+  atkAtt: 1
   time: 0
   startTiming: 0
   patternTime: 3

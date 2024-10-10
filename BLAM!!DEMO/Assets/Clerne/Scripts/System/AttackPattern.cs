@@ -168,6 +168,9 @@ public class AttackPattern : MonoBehaviour
 
         if (dodgeAndGuardFailed)
         {
+            // damageSE後で消してね！
+            SeManager.Instance.Play("damage7");
+
             player.Hp -= hpAtk;
             player.Combo = 0;   // コンボをリセット
             if (atkAtt == false) player.AnimDamageLight = true;   // 軽ダメージモーション
@@ -423,7 +426,7 @@ public class AttackPattern : MonoBehaviour
             {
                 Debug.Log("カウンター成功");
 
-                TakeDamage(player.AtkPow);
+                TakeDamage(player.AtkPow * 10);
 
                 counterSuccesed = true;
 
@@ -449,6 +452,9 @@ public class AttackPattern : MonoBehaviour
 
         if (player.AttackInp)
         {
+            // あとで消してね
+            SeManager.Instance.Play("ShotSound");
+
             TakeDamage(player.AtkPow);
 
             player.AnimAttack = true;
