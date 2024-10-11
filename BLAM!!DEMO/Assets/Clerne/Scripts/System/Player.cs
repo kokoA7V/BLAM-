@@ -25,9 +25,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     InputAction guardInput;
 
-    [Header("その他設定")]
+    [Header("エフェクト")]
     [SerializeField]
-    TimeScaleController timeScaleController;
+    ParticleSystem attackEff;
 
 
     private int _hp;
@@ -73,6 +73,11 @@ public class Player : MonoBehaviour
     public bool GuardInp
     {
         get { return _guard; }
+    }
+
+    public ParticleSystem AttackEff
+    {
+        get { return attackEff; }
     }
 
 

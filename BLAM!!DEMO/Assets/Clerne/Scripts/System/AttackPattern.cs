@@ -466,6 +466,9 @@ public class AttackPattern : MonoBehaviour
 
             player.AnimAttack = true;
 
+            player.AttackEff.Play();
+
+
         }
         // デバッグ用
         attStr = "チャンスタイム中!";
