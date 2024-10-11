@@ -738,7 +738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bigImage: {fileID: 7978215862739254823}
   optionCanvas: {fileID: 0}
-  buttonNum: 1
+  buttonNum: 0
 --- !u!114 &7978215863762662086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1101,7 +1101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bigImage: {fileID: 7978215862679951599}
   optionCanvas: {fileID: 0}
-  buttonNum: 0
+  buttonNum: 1
 --- !u!1 &7978215864096786205
 GameObject:
   m_ObjectHideFlags: 0
