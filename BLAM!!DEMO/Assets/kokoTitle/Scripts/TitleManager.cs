@@ -23,8 +23,14 @@ public class TitleManager : MonoBehaviour
     [SerializeField]
     GameObject optionCanvas;
 
+    private void Start()
+    {
+        BgmManager.Instance.Play("TitleBGM");
+    }
+
     public void InputSelect(int value)
     {
+        SeManager.Instance.Play("GunSound");
         switch(sceneMode)
         {
             //case 0:
@@ -55,6 +61,7 @@ public class TitleManager : MonoBehaviour
 
     public void InputEnter(int value)
     {
+        SeManager.Instance.Play("ShotSound");
         switch(sceneMode)
         {
             case 0:
@@ -135,13 +142,10 @@ public class TitleManager : MonoBehaviour
 
     public void PushModeChange(int value)
     {
+        SeManager.Instance.Play("ShotSound");
         sceneMode = value;
     }
 
-    public void PushStageSelect(int value)
-    {
-        selectMode = value;
-    }
 
     public int GetSceneNum()
     {

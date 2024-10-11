@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
     
     private float _hp;
 
+    // seri追加
+    [SerializeField]
     private GameObject[] nowPattern;
 
     private bool patternChange;
@@ -27,8 +29,8 @@ public class Enemy : MonoBehaviour
 
     Animator anim;
 
-    private bool _animAttack1;
-    private bool _animAttack2;
+    //private bool _animAttack1;
+    //private bool _animAttack2;
 
     // アニメディクショナリー追加
     // 登録用リスト、パターンから追加
@@ -38,14 +40,14 @@ public class Enemy : MonoBehaviour
 
 
 
-    public bool AnimAttack1
-    {
-        set { _animAttack1 = value; }
-    }
-    public bool AnimAttack2
-    {
-        set { _animAttack2 = value; }
-    }
+    //public bool AnimAttack1
+    //{
+    //    set { _animAttack1 = value; }
+    //}
+    //public bool AnimAttack2
+    //{
+    //    set { _animAttack2 = value; }
+    //}
 
 
 
@@ -140,11 +142,11 @@ public class Enemy : MonoBehaviour
     }
     void AnimController()
     {
-        anim.SetBool("Attack1", _animAttack1);
-        if (_animAttack1) _animAttack1 = false;
+        //anim.SetBool("Attack1", _animAttack1);
+        //if (_animAttack1) _animAttack1 = false;
 
-        anim.SetBool("Attack2", _animAttack2);
-        if (_animAttack2) _animAttack2 = false;
+        //anim.SetBool("Attack2", _animAttack2);
+        //if (_animAttack2) _animAttack2 = false;
 
         // 登録リスト上にあり、ディクショナリーにないアニメーションを登録
         foreach (string item in animList)
