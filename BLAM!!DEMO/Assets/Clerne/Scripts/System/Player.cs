@@ -28,6 +28,23 @@ public class Player : MonoBehaviour
     [Header("エフェクト")]
     [SerializeField]
     ParticleSystem attackEff;
+    [SerializeField]
+    ParticleSystem counterEff;
+    [SerializeField]
+    ParticleSystem guardEff;
+    [SerializeField]
+    ParticleSystem justGuardEff;
+    [SerializeField]
+    ParticleSystem dodgeEff;
+    [SerializeField]
+    ParticleSystem justDodgeEff;
+    [SerializeField]
+    ParticleSystem hitLightEff;
+    [SerializeField]
+    ParticleSystem hitHeavyEff;
+
+
+
 
 
     private int _hp;
@@ -78,6 +95,34 @@ public class Player : MonoBehaviour
     public ParticleSystem AttackEff
     {
         get { return attackEff; }
+    }
+    public ParticleSystem CounterEff
+    {
+        get { return counterEff; }
+    }
+    public ParticleSystem GuardEff
+    {
+        get { return guardEff; }
+    }
+    public ParticleSystem JustGuardEff
+    {
+        get { return justGuardEff; }
+    }
+    public ParticleSystem DodgeEff
+    {
+        get { return dodgeEff; }
+    }
+    public ParticleSystem JustDodgeEff
+    {
+        get { return justDodgeEff; }
+    }
+    public ParticleSystem HitLightEff
+    {
+        get { return hitLightEff; }
+    }
+    public ParticleSystem HitHeavyEff
+    {
+        get { return hitHeavyEff; }
     }
 
 

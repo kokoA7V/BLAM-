@@ -36,6 +36,11 @@ public class AttackPattern : MonoBehaviour
     [Header("チャンスタイム設定")]
     [SerializeField, Tooltip("チャンスタイム")]
     bool chance;
+    [Header("エフェクト設定")]
+    [SerializeField]
+    ParticleSystem attackEff;
+
+    bool atkEffPlayOnce = false;
 
     [Header("アニメーション設定")]
     //[SerializeField]
@@ -177,12 +182,23 @@ public class AttackPattern : MonoBehaviour
 
             player.Hp -= hpAtk;
             player.Combo = 0;   // コンボをリセット
-            if (atkAtt == false) player.AnimDamageLight = true;   // 軽ダメージモーション
-            else player.AnimDamageHeavy = true; // 重ダメージモーション
+            if (atkAtt == false)
+            {
+                player.AnimDamageLight = true;   // 軽ダメージモーション
+                //player.HitLightEff.Play();
+            }
+            else
+            {
+                player.AnimDamageHeavy = true; // 重ダメージモーション
+                //player.HitHeavyEff.Play();
+            }
+
+            
 
             dodgeAndGuardFailed = false;
 
         }
+        
 
 
         // デバッグ用
@@ -211,6 +227,11 @@ public class AttackPattern : MonoBehaviour
 
             CounterController();
 
+            if (time >= attackTiming && atkEffPlayOnce == false)
+            {
+                if(attackEff != null)attackEff.Play();
+                atkEffPlayOnce = true;
+            }
 
             if(enemy.PatternChange == true)
             {
@@ -257,6 +278,8 @@ public class AttackPattern : MonoBehaviour
 
                         player.AnimDodge = true;
 
+                        player.JustDodgeEff.Play();
+
 
                         // デバッグ用
                         doStr = "ジャスト回避成功";
@@ -281,6 +304,8 @@ public class AttackPattern : MonoBehaviour
                         dodged = true;
 
                         player.AnimDodge = true;
+
+                        player.DodgeEff.Play();
 
 
                         // デバッグ用
@@ -359,7 +384,7 @@ public class AttackPattern : MonoBehaviour
 
                         player.AnimGuard = true;
 
-                        //canCounter = true;
+                        player.JustGuardEff.Play();
 
                         // デバッグ用
                         doStr = "ジャストガード成功";
@@ -383,6 +408,8 @@ public class AttackPattern : MonoBehaviour
                         guarded = true;
 
                         player.AnimGuard = true;
+
+                        player.GuardEff.Play();
 
                         // デバッグ用
                         doStr = "通常ガード成功";
@@ -438,6 +465,8 @@ public class AttackPattern : MonoBehaviour
                 counterSuccesed = true;
 
                 player.AnimCounter = true;
+
+                player.CounterEff.Play();
 
                 // デバッグ用
                 doStr = "カウンター成功！";
