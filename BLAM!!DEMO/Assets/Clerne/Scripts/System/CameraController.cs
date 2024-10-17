@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private GameObject[] cam;
 
+
     public void CameraChange(int Num)
     {
         Reset();
