@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4026901218470155542}
   - component: {fileID: 4026901218470155539}
   m_Layer: 0
-  m_Name: BLAMAudio
+  m_Name: BLAM_Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
