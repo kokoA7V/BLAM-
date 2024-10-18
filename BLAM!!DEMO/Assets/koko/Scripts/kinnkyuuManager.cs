@@ -11,8 +11,7 @@ public class kinnkyuuManager : MonoBehaviour
     [SerializeField]
     Player player;
 
-    [SerializeField]
-    AttackPattern attackPattern;
+    private AttackPattern attackPattern;
 
     [SerializeField]
     GameObject nowObj;
@@ -24,7 +23,7 @@ public class kinnkyuuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        BgmManager.Instance.Play("Stage1BGM");
+        // BgmManager.Instance.Play("Stage1BGM");
     }
 
     private void Update()
@@ -47,7 +46,7 @@ public class kinnkyuuManager : MonoBehaviour
         {
             if (!counterSE)
             {
-                SeManager.Instance.Play("Counter");
+                // SeManager.Instance.Play("Counter");
                 counterSE = true;
             }
         }
@@ -72,14 +71,14 @@ public class kinnkyuuManager : MonoBehaviour
 
 
         // エネミーHP管理
-        if (enemy.GetComponent<Enemy>().Hp < 0)
+        if (enemy.GetComponent<Enemy>().Hp <= 0)
         {
             Debug.Log("倒した");
             SceneManager.LoadScene("TitleScene");
         }
 
         // プレイヤーHP管理
-        if (player.Hp < 0)
+        if (player.Hp <= 0)
         {
             Debug.Log("死亡");
             SceneManager.LoadScene("TitleScene");
