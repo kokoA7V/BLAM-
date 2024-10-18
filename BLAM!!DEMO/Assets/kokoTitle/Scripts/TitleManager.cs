@@ -25,7 +25,7 @@ public class TitleManager : MonoBehaviour
 
     private void Start()
     {
-        BgmManager.Instance.Play("TitleBGM");
+       //  BgmManager.Instance.Play("TitleBGM");
     }
 
     public void InputSelect(int value)
@@ -61,7 +61,7 @@ public class TitleManager : MonoBehaviour
 
     public void InputEnter(int value)
     {
-        SeManager.Instance.Play("ShotSound");
+        // SeManager.Instance.Play("ShotSound");
         switch(sceneMode)
         {
             case 0:
@@ -142,7 +142,7 @@ public class TitleManager : MonoBehaviour
 
     public void PushModeChange(int value)
     {
-        SeManager.Instance.Play("ShotSound");
+        // SeManager.Instance.Play("ShotSound");
         sceneMode = value;
     }
 

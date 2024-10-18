@@ -43,7 +43,7 @@ public class BackButton : MonoBehaviour
         {
             anim.Play("ExitPauseAnimation");
         }
-        if (transform.parent.gameObject.name == "OptionCanvas")
+        if (transform.parent.gameObject.name == "Text")
         {
             anim.Play("ExitOptionAnimation");
         }

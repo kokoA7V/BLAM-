@@ -24,7 +24,7 @@ public class kinnkyuuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        BgmManager.Instance.Play("Stage1BGM");
+        // BgmManager.Instance.Play("Stage1BGM");
     }
 
     private void Update()
@@ -47,7 +47,7 @@ public class kinnkyuuManager : MonoBehaviour
         {
             if (!counterSE)
             {
-                SeManager.Instance.Play("Counter");
+                // SeManager.Instance.Play("Counter");
                 counterSE = true;
             }
         }
