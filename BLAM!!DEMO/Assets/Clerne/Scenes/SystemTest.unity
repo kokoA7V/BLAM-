@@ -2135,13 +2135,37 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1241348374933333712, guid: 99e5201eb57bc9449ae11f8bddce3946, type: 3}
+      propertyPath: dodgeEff
+      value: 
+      objectReference: {fileID: 605445256}
+    - target: {fileID: 1241348374933333712, guid: 99e5201eb57bc9449ae11f8bddce3946, type: 3}
+      propertyPath: guardEff
+      value: 
+      objectReference: {fileID: 605445256}
+    - target: {fileID: 1241348374933333712, guid: 99e5201eb57bc9449ae11f8bddce3946, type: 3}
       propertyPath: attackEff
+      value: 
+      objectReference: {fileID: 605445256}
+    - target: {fileID: 1241348374933333712, guid: 99e5201eb57bc9449ae11f8bddce3946, type: 3}
+      propertyPath: counterEff
+      value: 
+      objectReference: {fileID: 605445256}
+    - target: {fileID: 1241348374933333712, guid: 99e5201eb57bc9449ae11f8bddce3946, type: 3}
+      propertyPath: hitHeavyEff
+      value: 
+      objectReference: {fileID: 605445256}
+    - target: {fileID: 1241348374933333712, guid: 99e5201eb57bc9449ae11f8bddce3946, type: 3}
+      propertyPath: hitLightEff
       value: 
       objectReference: {fileID: 605445256}
     - target: {fileID: 1241348374933333712, guid: 99e5201eb57bc9449ae11f8bddce3946, type: 3}
       propertyPath: justDodgeEff
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 605445256}
+    - target: {fileID: 1241348374933333712, guid: 99e5201eb57bc9449ae11f8bddce3946, type: 3}
+      propertyPath: justGuardEff
+      value: 
+      objectReference: {fileID: 605445256}
     - target: {fileID: 6242725599158252559, guid: 99e5201eb57bc9449ae11f8bddce3946, type: 3}
       propertyPath: m_RootOrder
       value: 2

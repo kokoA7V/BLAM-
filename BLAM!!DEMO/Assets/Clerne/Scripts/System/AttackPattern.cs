@@ -185,12 +185,14 @@ public class AttackPattern : MonoBehaviour
             if (atkAtt == false)
             {
                 player.AnimDamageLight = true;   // 軽ダメージモーション
-                //player.HitLightEff.Play();
+                player.HitLightEff.Play();
+                player.SePlayer(player.HitLightSe);
             }
             else
             {
                 player.AnimDamageHeavy = true; // 重ダメージモーション
-                //player.HitHeavyEff.Play();
+                player.HitHeavyEff.Play();
+                player.SePlayer(player.HitHeavySe);
             }
 
             
@@ -280,6 +282,8 @@ public class AttackPattern : MonoBehaviour
 
                         player.JustDodgeEff.Play();
 
+                        player.SePlayer(player.JustDodgeSe);
+
 
                         // デバッグ用
                         doStr = "ジャスト回避成功";
@@ -306,6 +310,8 @@ public class AttackPattern : MonoBehaviour
                         player.AnimDodge = true;
 
                         player.DodgeEff.Play();
+
+                        player.SePlayer(player.DodgeSe);
 
 
                         // デバッグ用
@@ -386,6 +392,8 @@ public class AttackPattern : MonoBehaviour
 
                         player.JustGuardEff.Play();
 
+                        player.SePlayer(player.JustGuardSe);
+
                         // デバッグ用
                         doStr = "ジャストガード成功";
 
@@ -410,6 +418,8 @@ public class AttackPattern : MonoBehaviour
                         player.AnimGuard = true;
 
                         player.GuardEff.Play();
+
+                        player.SePlayer(player.GuardSe);
 
                         // デバッグ用
                         doStr = "通常ガード成功";
@@ -468,6 +478,8 @@ public class AttackPattern : MonoBehaviour
 
                 player.CounterEff.Play();
 
+                player.SePlayer(player.CounterSe);
+
                 // デバッグ用
                 doStr = "カウンター成功！";
             }
@@ -496,6 +508,8 @@ public class AttackPattern : MonoBehaviour
             player.AnimAttack = true;
 
             player.AttackEff.Play();
+
+            player.SePlayer(player.AttackSe);
 
 
         }
