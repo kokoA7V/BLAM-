@@ -49,7 +49,7 @@ MonoBehaviour:
   atkAtt: 0
   time: 0
   startTiming: 0
-  patternTime: 1
+  patternTime: 3
   attackTiming: 10
   guardTime: 0
   justGuardTime: 0

@@ -54,9 +54,6 @@ public class Enemy : MonoBehaviour
     private GameObject nowObj;
     private GameObject beforeObj;
 
-    // Playerアニメーションいじるための取得
-    Player player;
-
     void Start()
     {
         _hp = maxHp;
@@ -73,7 +70,6 @@ public class Enemy : MonoBehaviour
 
         attackPattern.DebugMode = debugMode;                    // デバッグモードを有効化
 
-        player = GameObject.Find("Player").GetComponent<Player>();  // アニメいじる用
     }
 
     void Update()
@@ -119,13 +115,6 @@ public class Enemy : MonoBehaviour
             attackPattern.DebugMode = debugMode;                    // デバッグモードを有効化
 
             Destroy(beforeObj);                                   // 前のパターンを破棄
-
-
-            // Playerアニメーションいじる用
-            player.AnimDodge = false;
-            player.AnimGuard = false;
-            player.AnimDamageHeavy = false;
-            player.AnimDamageLight = false;
         }
 
 

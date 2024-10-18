@@ -195,11 +195,11 @@ public class Player : MonoBehaviour
     private bool _animDamageHeavy;
     private bool _animChanceTime;
 
-    // アニメーションディクショナリー
-    Dictionary<string, bool> animDic = new Dictionary<string, bool>();
-    // ディクショナリー登録用List、Inspectorから追加
-    [SerializeField]
-    List<string> animList = new List<string>();
+    //// アニメーションディクショナリー
+    //Dictionary<string, bool> animDic = new Dictionary<string, bool>();
+    //// ディクショナリー登録用List、Inspectorから追加
+    //[SerializeField]
+    //List<string> animList = new List<string>();
 
     public bool AnimAttack
     {
@@ -252,10 +252,10 @@ public class Player : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
 
         // animListの要素をanimDicにAdd
-        foreach (string item in animList)
-        {
-            animDic.Add(item, false);
-        }
+        //foreach (string item in animList)
+        //{
+        //    animDic.Add(item, false);
+        //}
     }
 
     // Update is called once per frame
@@ -293,10 +293,10 @@ public class Player : MonoBehaviour
         if (_animAttack) _animAttack = false;
 
         anim.SetBool("Dodge", _animDodge);
-        //if (_animDodge) _animDodge = false;
+        if (_animDodge) _animDodge = false;
 
         anim.SetBool("Guard", _animGuard);
-        //if (_animGuard) _animGuard = false;
+        if (_animGuard) _animGuard = false;
 
         anim.SetBool("CanCounter", _animCanCounter);
 
@@ -304,19 +304,19 @@ public class Player : MonoBehaviour
         // AttackPatternの方でfalseにする
 
         anim.SetBool("Damage_Light", _animDamageLight);
-        //if (_animDamageLight) _animDamageLight = false;
+        if (_animDamageLight) _animDamageLight = false;
 
         anim.SetBool("Damage_Heavy", _animDamageHeavy);
-        //if (_animDamageHeavy) _animDamageHeavy = false;
+        if (_animDamageHeavy) _animDamageHeavy = false;
 
         anim.SetBool("ChanceTime", _animChanceTime);
 
         // ディクショナリー再生
-        foreach (KeyValuePair<string, bool> item in animDic)
-        {
-            anim.SetBool(item.Key, animDic[item.Key]);
-            if (animDic[item.Key]) animDic[item.Key] = false;
-        }
+        //foreach (KeyValuePair<string, bool> item in animDic)
+        //{
+        //    anim.SetBool(item.Key, animDic[item.Key]);
+        //    if (animDic[item.Key]) animDic[item.Key] = false;
+        //}
     }
 
     public void SePlayer(AudioClip se)
