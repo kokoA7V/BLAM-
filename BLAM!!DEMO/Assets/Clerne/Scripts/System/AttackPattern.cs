@@ -178,7 +178,7 @@ public class AttackPattern : MonoBehaviour
         if (dodgeAndGuardFailed)
         {
             // damageSE後で消してね！
-            SeManager.Instance.Play("damage7");
+            //SeManager.Instance.Play("damage7");
 
             player.Hp -= hpAtk;
             player.Combo = 0;   // コンボをリセット
@@ -501,7 +501,7 @@ public class AttackPattern : MonoBehaviour
         if (player.AttackInp)
         {
             // あとで消してね
-            SeManager.Instance.Play("ShotSound");
+            //SeManager.Instance.Play("ShotSound");
 
             TakeDamage(player.AtkPow);
 
