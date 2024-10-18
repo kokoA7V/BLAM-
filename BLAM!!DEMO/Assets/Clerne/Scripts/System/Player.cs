@@ -25,6 +25,27 @@ public class Player : MonoBehaviour
     [SerializeField]
     InputAction guardInput;
 
+    [Header("エフェクト")]
+    [SerializeField]
+    ParticleSystem attackEff;
+    [SerializeField]
+    ParticleSystem counterEff;
+    [SerializeField]
+    ParticleSystem guardEff;
+    [SerializeField]
+    ParticleSystem justGuardEff;
+    [SerializeField]
+    ParticleSystem dodgeEff;
+    [SerializeField]
+    ParticleSystem justDodgeEff;
+    [SerializeField]
+    ParticleSystem hitLightEff;
+    [SerializeField]
+    ParticleSystem hitHeavyEff;
+
+
+
+
 
     private int _hp;
     private float _sp;
@@ -69,6 +90,39 @@ public class Player : MonoBehaviour
     public bool GuardInp
     {
         get { return _guard; }
+    }
+
+    public ParticleSystem AttackEff
+    {
+        get { return attackEff; }
+    }
+    public ParticleSystem CounterEff
+    {
+        get { return counterEff; }
+    }
+    public ParticleSystem GuardEff
+    {
+        get { return guardEff; }
+    }
+    public ParticleSystem JustGuardEff
+    {
+        get { return justGuardEff; }
+    }
+    public ParticleSystem DodgeEff
+    {
+        get { return dodgeEff; }
+    }
+    public ParticleSystem JustDodgeEff
+    {
+        get { return justDodgeEff; }
+    }
+    public ParticleSystem HitLightEff
+    {
+        get { return hitLightEff; }
+    }
+    public ParticleSystem HitHeavyEff
+    {
+        get { return hitHeavyEff; }
     }
 
 
