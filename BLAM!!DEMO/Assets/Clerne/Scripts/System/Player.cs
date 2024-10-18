@@ -293,10 +293,10 @@ public class Player : MonoBehaviour
         if (_animAttack) _animAttack = false;
 
         anim.SetBool("Dodge", _animDodge);
-        if (_animDodge) _animDodge = false;
+        //if (_animDodge) _animDodge = false;
 
         anim.SetBool("Guard", _animGuard);
-        if (_animGuard) _animGuard = false;
+        //if (_animGuard) _animGuard = false;
 
         anim.SetBool("CanCounter", _animCanCounter);
 
@@ -304,10 +304,10 @@ public class Player : MonoBehaviour
         // AttackPattern‚Ì•û‚Åfalse‚É‚·‚é
 
         anim.SetBool("Damage_Light", _animDamageLight);
-        if (_animDamageLight) _animDamageLight = false;
+        //if (_animDamageLight) _animDamageLight = false;
 
         anim.SetBool("Damage_Heavy", _animDamageHeavy);
-        if (_animDamageHeavy) _animDamageHeavy = false;
+        //if (_animDamageHeavy) _animDamageHeavy = false;
 
         anim.SetBool("ChanceTime", _animChanceTime);
 

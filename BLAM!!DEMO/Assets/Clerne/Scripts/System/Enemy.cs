@@ -19,8 +19,6 @@ public class Enemy : MonoBehaviour
     
     private float _hp;
 
-    // seri追加
-    [SerializeField]
     private GameObject[] nowPattern;
 
     private bool patternChange;
@@ -29,27 +27,11 @@ public class Enemy : MonoBehaviour
 
     Animator anim;
 
-    //private bool _animAttack1;
-    //private bool _animAttack2;
-
     // アニメディクショナリー追加
     // 登録用リスト、パターンから追加
     public List<string> animList = new List<string>();
     // 再生用のディクショナリー
     public　Dictionary<string, bool> animDic = new Dictionary<string, bool>();
-
-
-
-    //public bool AnimAttack1
-    //{
-    //    set { _animAttack1 = value; }
-    //}
-    //public bool AnimAttack2
-    //{
-    //    set { _animAttack2 = value; }
-    //}
-
-
 
     public float Hp
     {
@@ -72,6 +54,8 @@ public class Enemy : MonoBehaviour
     private GameObject nowObj;
     private GameObject beforeObj;
 
+    // Playerアニメーションいじるための取得
+    Player player;
 
     void Start()
     {
@@ -88,6 +72,8 @@ public class Enemy : MonoBehaviour
         attackPattern = nowObj.GetComponent<AttackPattern>();   // 取得したオブジェクトのパターンスクリプトを取得
 
         attackPattern.DebugMode = debugMode;                    // デバッグモードを有効化
+
+        player = GameObject.Find("Player").GetComponent<Player>();  // アニメいじる用
     }
 
     void Update()
@@ -111,9 +97,6 @@ public class Enemy : MonoBehaviour
         if (attackPattern.PatternEnd == true)
         { // パターンが終わったら
 
-
-
-
             beforeObj = nowObj; // 終わったパターンオブジェクトを過去のオブジェクトとする
 
             patternNum++;   // パターン番号を進める
@@ -136,17 +119,19 @@ public class Enemy : MonoBehaviour
             attackPattern.DebugMode = debugMode;                    // デバッグモードを有効化
 
             Destroy(beforeObj);                                   // 前のパターンを破棄
+
+
+            // Playerアニメーションいじる用
+            player.AnimDodge = false;
+            player.AnimGuard = false;
+            player.AnimDamageHeavy = false;
+            player.AnimDamageLight = false;
         }
 
 
     }
     void AnimController()
     {
-        //anim.SetBool("Attack1", _animAttack1);
-        //if (_animAttack1) _animAttack1 = false;
-
-        //anim.SetBool("Attack2", _animAttack2);
-        //if (_animAttack2) _animAttack2 = false;
 
         // 登録リスト上にあり、ディクショナリーにないアニメーションを登録
         foreach (string item in animList)
