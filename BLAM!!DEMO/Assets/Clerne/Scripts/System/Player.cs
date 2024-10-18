@@ -43,6 +43,27 @@ public class Player : MonoBehaviour
     [SerializeField]
     ParticleSystem hitHeavyEff;
 
+    [Header("SE")]
+    [SerializeField]
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip attackSe;
+    [SerializeField]
+    AudioClip counterSe;
+    [SerializeField]
+    AudioClip guardSe;
+    [SerializeField]
+    AudioClip justGuardSe;
+    [SerializeField]
+    AudioClip dodgeSe;
+    [SerializeField]
+    AudioClip justDodgeSe;
+    [SerializeField]
+    AudioClip hitLightSe;
+    [SerializeField]
+    AudioClip hitHeavySe;
+
+
 
 
 
@@ -123,6 +144,40 @@ public class Player : MonoBehaviour
     public ParticleSystem HitHeavyEff
     {
         get { return hitHeavyEff; }
+    }
+
+
+    public AudioClip AttackSe
+    {
+        get { return attackSe; }
+    }
+    public AudioClip CounterSe
+    {
+        get { return counterSe; }
+    }
+    public AudioClip GuardSe
+    {
+        get { return guardSe; }
+    }
+    public AudioClip JustGuardSe
+    {
+        get { return justGuardSe; }
+    }
+    public AudioClip DodgeSe
+    {
+        get { return dodgeSe; }
+    }
+    public AudioClip JustDodgeSe
+    {
+        get { return justDodgeSe; }
+    }
+    public AudioClip HitLightSe
+    {
+        get { return hitLightSe; }
+    }
+    public AudioClip HitHeavySe
+    {
+        get { return hitHeavySe; }
     }
 
 
@@ -262,5 +317,11 @@ public class Player : MonoBehaviour
             anim.SetBool(item.Key, animDic[item.Key]);
             if (animDic[item.Key]) animDic[item.Key] = false;
         }
+    }
+
+    public void SePlayer(AudioClip se)
+    {
+        if (se != null) audioSource.PlayOneShot(se);
+        else Debug.Log("SEì¸Ç¡ÇƒÇ»Ç¢ÇÊÅI");
     }
 }

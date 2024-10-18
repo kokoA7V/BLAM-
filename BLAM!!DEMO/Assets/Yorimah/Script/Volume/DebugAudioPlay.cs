@@ -4,6 +4,12 @@ public class DebugAudioPlay : MonoBehaviour
 {
     [SerializeField,Header("SEƒTƒEƒ“ƒh")]
     AudioSource seAudioSource;
+    [SerializeField]
+    AudioClip se;
+    [SerializeField]
+    AudioClip bgm;
+
+
 
     private void Start()
     {
@@ -14,7 +20,9 @@ public class DebugAudioPlay : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            seAudioSource.Play();
+            seAudioSource.PlayOneShot(se);
+            seAudioSource.PlayOneShot(bgm);
+            
         }
     }
 }
