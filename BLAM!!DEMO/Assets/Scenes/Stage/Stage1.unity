@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -273,6 +273,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7776045723617679624, guid: a986f219fe7f07a4ba5625173d831ce1, type: 3}
+      propertyPath: hitHeavyEff
+      value: 
+      objectReference: {fileID: 1039021882}
+    - target: {fileID: 7776045723617679624, guid: a986f219fe7f07a4ba5625173d831ce1, type: 3}
+      propertyPath: hitLightEff
+      value: 
+      objectReference: {fileID: 1039021882}
     - target: {fileID: 7917536619613149112, guid: a986f219fe7f07a4ba5625173d831ce1, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -319,97 +327,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a986f219fe7f07a4ba5625173d831ce1, type: 3}
---- !u!1 &457479440 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4790945128852272558, guid: a986f219fe7f07a4ba5625173d831ce1, type: 3}
-  m_PrefabInstance: {fileID: 457479439}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &457479441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457479440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee757f7a3ddee945a475e07c416f252, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 1000
-  atkPow: 10
-  maxSp: 1000
-  spRecov: 100
-  chanceAtkCooltime: 0.2
-  attackInput:
-    m_Name: Attack Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: cf6f87f0-78ef-43b8-a9e9-f8a7b4bbac44
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 26204c88-aaaa-477f-9d2c-6c41ac12a2d9
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Attack Input
-      m_Flags: 0
-    m_Flags: 0
-  dodgeInput:
-    m_Name: Dodge Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 64ebbfee-76dc-4c9a-a690-e7539dd7def9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 3e5c790f-3d39-498c-b67a-97769900613b
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Dodge Input
-      m_Flags: 0
-    m_Flags: 0
-  guardInput:
-    m_Name: Guard Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: d3d081ce-e701-4c20-a419-a33f5dc30a9e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: f986d3b6-939c-48af-a536-702031cad1d0
-      m_Path: <Keyboard>/g
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Guard Input
-      m_Flags: 0
-    m_Flags: 0
-  attackEff: {fileID: 0}
-  counterEff: {fileID: 0}
-  guardEff: {fileID: 0}
-  justGuardEff: {fileID: 0}
-  dodgeEff: {fileID: 0}
-  justDodgeEff: {fileID: 0}
-  hitLightEff: {fileID: 1039021882}
-  hitHeavyEff: {fileID: 1039021882}
-  audioSource: {fileID: 0}
-  attackSe: {fileID: 0}
-  counterSe: {fileID: 0}
-  guardSe: {fileID: 0}
-  justGuardSe: {fileID: 0}
-  dodgeSe: {fileID: 0}
-  justDodgeSe: {fileID: 0}
-  hitLightSe: {fileID: 0}
-  hitHeavySe: {fileID: 0}
-  animList: []
 --- !u!1 &464939179
 GameObject:
   m_ObjectHideFlags: 3
@@ -1308,5 +1225,4 @@ MonoBehaviour:
   - {fileID: 6669703844105153908, guid: 4359f150ec18c4b44ad4bd7739f3f3cf, type: 3}
   - {fileID: 7532116061481750893, guid: 3df855c6fe17de549876cbcb9a86f72a, type: 3}
   secondPattern: []
-  nowPattern: []
   animList: []
