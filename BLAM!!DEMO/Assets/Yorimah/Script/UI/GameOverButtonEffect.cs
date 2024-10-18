@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GameOverButtonEffect : MonoBehaviour
 {
@@ -15,7 +12,7 @@ public class GameOverButtonEffect : MonoBehaviour
         EXIT,
     }
 
-    [SerializeField,Header("ボタンの種類")]
+    [SerializeField, Header("ボタンの種類")]
     private ButtonNum buttonNum;
 
     private Button button;
@@ -30,7 +27,7 @@ public class GameOverButtonEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void ButtonClicked()
@@ -47,8 +44,12 @@ public class GameOverButtonEffect : MonoBehaviour
                 break;
             case ButtonNum.EXIT:
                 // ゲーム終了
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+#else
+    Application.Quit();//ゲームプレイ終了
+#endif
                 break;
         }
-        Debug.Log("押されたよ");
     }
 }
